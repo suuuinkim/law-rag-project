@@ -20,6 +20,11 @@ law-rag-frontend/.env.local
 .DS_Store
 Thumbs.db
 
+# Portfolio HTML files
+law-rag-ui.html
+portfolio.html
+preview.html
+
 # AI / IDE local settings
 .claude/
 **/.claude/
