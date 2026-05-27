@@ -1,7 +1,7 @@
 from pathlib import Path
 from uuid import uuid4
 
-from fastapi import APIRouter, UploadFile, File, HTTPException, Query
+from fastapi import APIRouter, UploadFile, File, HTTPException, Query, Header
 
 from app.core.config import settings
 from app.schemas.search_schema import SearchRequest
@@ -271,7 +271,18 @@ def search_documents(request: SearchRequest):
         )
 
 @router.delete("/vector-store/reset")
-def reset_vector_store():
+def reset_vector_store(x_admin_api_key: str | None = Header(default=None)):
+    if not settings.ADMIN_API_KEY:
+        raise HTTPException(
+            status_code=500,
+            detail="ADMIN_API_KEY is not configured"
+        )
+
+    if x_admin_api_key != settings.ADMIN_API_KEY:
+        raise HTTPException(
+            status_code=403,
+            detail="관리자 권한이 필요합니다"
+        )
     """
     Qdrant 컬렉션을 삭제하고 다시 생성합니다.
     개발 중 벡터 설정이 꼬였을 때 사용합니다.
