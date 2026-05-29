@@ -215,7 +215,7 @@ async def upload_document_and_index(
         "total_chunk_count": total_chunk_count,
         "requested_max_chunks": max_chunks,
         "indexed_count": indexed_count,
-        "collection_name": "law_documents"
+        "collection_name": settings.QDRANT_COLLECTION_NAME
     }
 
 @router.get("/vector-store/count")
