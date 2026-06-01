@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  askQuestion,
+  getVectorCount,
+  resetVectorStore,
+  uploadAndIndex,
+} from "./api/documents.js";
+import apiClient from "./api/client.js";
 import "./App.css";
-
-const API = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -58,11 +63,7 @@ function App() {
 
   const checkHealth = async () => {
     try {
-      const response = await fetch(`${API}/health`);
-
-      if (!response.ok) {
-        throw new Error("health failed");
-      }
+      await apiClient.get("/health");
 
       setApiStatus("ok");
       setApiStatusText("API 연결됨");
@@ -75,13 +76,7 @@ function App() {
 
   const fetchVectorCount = async () => {
     try {
-      const response = await fetch(`${API}/documents/vector-store/count`);
-
-      if (!response.ok) {
-        return;
-      }
-
-      const data = await response.json();
+      const data = await getVectorCount();
       setVectorCount(Number(data.points_count ?? 0).toLocaleString());
     } catch {
       setVectorCount("—");
@@ -114,30 +109,14 @@ function App() {
     setProgressValue(12);
     setProgressText("PDF 업로드 중");
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-
     try {
       setProgressValue(42);
       setProgressText("텍스트 추출 및 임베딩 중");
 
-      const response = await fetch(
-        `${API}/documents/upload/index?max_chunks=${chunkCount}`,
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
-
-      if (!response.ok) {
-        const error = await response.json().catch(() => ({}));
-        throw new Error(error.detail || `HTTP ${response.status}`);
-      }
-
       setProgressValue(86);
       setProgressText("Qdrant에 벡터 저장 중");
 
-      const data = await response.json();
+      const data = await uploadAndIndex(selectedFile, chunkCount);
 
       setPageCount(data.page_count ?? "—");
       setTotalChunks(data.total_chunk_count ?? "—");
@@ -174,13 +153,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`${API}/documents/vector-store/reset`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      await resetVectorStore();
 
       setVectorCount("0");
       setIndexedChunks("—");
@@ -211,23 +184,7 @@ function App() {
     ]);
 
     try {
-      const response = await fetch(`${API}/documents/ask`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          question: cleanQuestion,
-          limit: 5,
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.json().catch(() => ({}));
-        throw new Error(error.detail || `HTTP ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await askQuestion(cleanQuestion, 5);
 
       setMessages((prev) => [
         ...prev,

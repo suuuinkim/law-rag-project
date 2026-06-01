@@ -1,42 +1,45 @@
-const BASE = import.meta.env.VITE_API_BASE_URL;
+import apiClient from "./client.js";
 
-// PDF 업로드 + 인덱싱
+// PDF upload + indexing
 export async function uploadAndIndex(file, maxChunks = 20) {
     const form = new FormData();
     form.append("file", file);
-    const res = await fetch(`${BASE}/upload/index?max_chunks=${maxChunks}`, {
-        method: "POST",
-        body: form,
-    });
-    if (!res.ok) throw new Error("업로드 실패");
-    return res.json();
+
+    const res = await apiClient.post(
+        `/documents/upload/index?max_chunks=${maxChunks}`,
+        form,
+    );
+
+    return res.data;
 }
 
-// 질문 → RAG 답변
+// Question + RAG answer
 export async function askQuestion(question, limit = 5) {
-    const res = await fetch(`${BASE}/ask`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, limit }),
+    const res = await apiClient.post("/documents/ask", {
+        question,
+        limit,
     });
-    if (!res.ok) throw new Error("질문 요청 실패");
-    return res.json();
+
+    return res.data;
 }
 
-// 유사 청크 검색 (답변 없이 검색만)
+// Similar chunk search
 export async function searchDocuments(question, limit = 5) {
-    const res = await fetch(`${BASE}/search`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, limit }),
+    const res = await apiClient.post("/documents/search", {
+        question,
+        limit,
     });
-    if (!res.ok) throw new Error("검색 실패");
-    return res.json();
+
+    return res.data;
 }
 
-// 저장된 벡터 수 확인
+// Stored vector count
 export async function getVectorCount() {
-    const res = await fetch(`${BASE}/vector-store/count`);
-    if (!res.ok) throw new Error("조회 실패");
-    return res.json();
+    const res = await apiClient.get("/documents/vector-store/count");
+    return res.data;
+}
+
+export async function resetVectorStore() {
+    const res = await apiClient.delete("/documents/vector-store/reset");
+    return res.data;
 }
