@@ -391,7 +391,7 @@ function App() {
               </button>
             </section>
 
-            <section className="card">
+            {/* <section className="card">
               <div className="card-title">
                 <h3>작동 흐름</h3>
                 <small>RAG</small>
@@ -406,7 +406,7 @@ function App() {
                 />
                 <Step number="4" text="찾은 근거를 바탕으로 답변합니다." />
               </div>
-            </section>
+            </section> */}
           </div>
         </aside>
 
