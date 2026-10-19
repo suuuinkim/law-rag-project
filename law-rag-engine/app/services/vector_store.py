@@ -36,6 +36,16 @@ def ensure_collection_exists():
     ]
 
     if collection_name in collection_names:
+        vectors = client.get_collection(collection_name=collection_name).config.params.vectors
+        if not isinstance(vectors, VectorParams):
+            raise ValueError("Qdrant collection requires a single unnamed vector.")
+        if vectors.size != VECTOR_SIZE or vectors.distance != Distance.COSINE:
+            raise ValueError(
+                f"Qdrant collection configuration mismatch: "
+                f"expected size={VECTOR_SIZE}, distance={Distance.COSINE}; "
+                f"got size={vectors.size}, distance={vectors.distance}. "
+                "Configure a new collection name to preserve existing data."
+            )
         return
 
     client.create_collection(
@@ -84,7 +94,8 @@ def upsert_chunks(
 
     client.upsert(
         collection_name=settings.QDRANT_COLLECTION_NAME,
-        points=points
+        points=points,
+        wait=True
     )
 
     return len(points)
