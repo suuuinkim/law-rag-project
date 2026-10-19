@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+pymupdf
+openai
+qdrant-client
+python-multipart
+google-genai

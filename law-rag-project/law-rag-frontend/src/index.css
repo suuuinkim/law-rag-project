@@ -1,0 +1,140 @@
+/* ── Design tokens · AI Research Studio ─────────────────────── */
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-muted: #fafaf9;
+  --sidebar: #efefed;
+  --canvas: #ececea;
+
+  --text: #292d35;
+  --text-2: #667085;
+  --text-2-strong: #5b6475; /* secondary text on the darker sidebar (AA) */
+  --text-3: #8b93a1;
+
+  --accent: #6559d8;
+  --accent-hover: #5246bc;
+  --accent-surface: #f0eeff;
+  --accent-surface-strong: #e3dfff;
+  --accent-ring: rgba(101, 89, 216, 0.22);
+
+  --border: #e4e4e7;
+  --border-strong: #d4d4d8;
+  --hover: rgba(41, 45, 53, 0.05);
+  --pressed: rgba(41, 45, 53, 0.09);
+
+  --success: #26856a;
+  --success-surface: #e9f5f0;
+  --error: #d64545;
+  --error-hover: #bd3838;
+  --error-surface: #fdf0f0;
+  --warning-text: #87580a;
+  --warning-surface: #fff5e3;
+  --highlight: #fff1bf;
+  --highlight-mark: #ffe17a;
+
+  --radius-panel: 14px;
+  --radius-card: 12px;
+  --radius-input: 10px;
+  --radius-btn: 8px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.07), 0 1px 3px rgba(16, 24, 40, 0.05);
+  --shadow-lg: 0 24px 56px rgba(16, 24, 40, 0.16);
+
+  --dur: 180ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --font: "Pretendard Variable", Pretendard, Inter, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: "Inter", var(--font);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent-surface-strong);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(41, 45, 53, 0.16) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(41, 45, 53, 0.14);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(41, 45, 53, 0.26);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
