@@ -10,6 +10,7 @@ from app.services.embedding import create_embeddings
 from app.services.pdf_loader import extract_pages_from_pdf
 from app.services.vector_store import (
     upsert_chunks
+    , ensure_collection_exists
     , get_qdrant_client
     , search_similar_chunks
     , recreate_collection
@@ -173,6 +174,14 @@ async def upload_document_and_index(
 
     with open(file_path, "wb") as f:
         f.write(content)
+
+    try:
+        ensure_collection_exists()
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Qdrant collection preparation failed: {str(e)}"
+        ) from e
 
     try:
         pages = extract_pages_from_pdf(str(file_path))
