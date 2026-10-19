@@ -1,0 +1,25 @@
+﻿question_id,category,evidence_index,expected_pages,found_on_pages,status,contained_in_chunk_ids,split_across_chunks,indexed_with_default_max_chunks_20
+D01,direct,0,11,11,verified,page-11-chunk-1,False,False
+D02,direct,0,4,4,verified,page-4-chunk-0,False,True
+D03,direct,0,13,13,verified,page-13-chunk-1,False,False
+D04,direct,0,5,5,verified,page-5-chunk-2,False,True
+D05,direct,0,17,17,verified,page-17-chunk-1,False,False
+D06,direct,0,11,11,verified,page-11-chunk-1,False,False
+S01,semantic,0,11,11,verified,page-11-chunk-0,False,False
+S02,semantic,0,13,13,verified,page-13-chunk-2|page-13-chunk-3,False,False
+S03,semantic,0,18,18,verified,page-18-chunk-1,False,False
+S04,semantic,0,14|15,14|15,verified,page-14-chunk-1|page-15-chunk-0,False,False
+S05,semantic,0,18,18,verified,page-18-chunk-0|page-18-chunk-1,False,False
+S06,semantic,0,4,4,verified,page-4-chunk-1,False,True
+M01,multi_evidence,0,12,12,verified,page-12-chunk-2,False,False
+M01,multi_evidence,1,13,13,verified,page-13-chunk-2,False,False
+M02,multi_evidence,0,16,16,verified,page-16-chunk-2,False,False
+M02,multi_evidence,1,17,17,verified,page-17-chunk-0,False,False
+M03,multi_evidence,0,3,3,verified,page-3-chunk-2,False,True
+M03,multi_evidence,1,4,4,verified,page-4-chunk-1,False,True
+M04,multi_evidence,0,19,19,verified,page-19-chunk-0,False,False
+M04,multi_evidence,1,3,3,verified,page-3-chunk-1|page-3-chunk-2,False,True
+U01,unanswerable,,,,not_applicable (unanswerable),,,
+U02,unanswerable,,,,not_applicable (unanswerable),,,
+U03,unanswerable,,,,not_applicable (unanswerable),,,
+U04,unanswerable,,,,not_applicable (unanswerable),,,

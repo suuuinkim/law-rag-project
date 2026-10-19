@@ -1,0 +1,57 @@
+# 실행: 2026-10-19T06:53:18Z / Python 3.12.10 / MINGW64_NT-10.0-26200
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.7.0 -- E:\dev\gits\law-rag-project\law-rag-project\law-rag-engine\.venv-eval\Scripts\python.exe
+rootdir: E:\dev\gits\law-rag-project\law-rag-project\law-rag-engine
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 41 items
+
+tests/test_chunker.py::test_text_of_800_chars_is_single_chunk PASSED     [  2%]
+tests/test_chunker.py::test_text_shorter_than_chunk_size_is_single_chunk PASSED [  4%]
+tests/test_chunker.py::test_text_of_801_chars_is_split_into_two_chunks_with_overlap PASSED [  7%]
+tests/test_chunker.py::test_text_of_2000_chars_is_split_into_three_chunks PASSED [  9%]
+tests/test_chunker.py::test_consecutive_chunks_share_exactly_120_chars PASSED [ 12%]
+tests/test_chunker.py::test_chunks_cover_entire_text_without_gaps PASSED [ 14%]
+tests/test_chunker.py::test_every_chunk_is_at_most_chunk_size PASSED     [ 17%]
+tests/test_chunker.py::test_empty_text_returns_no_chunks PASSED          [ 19%]
+tests/test_chunker.py::test_none_text_returns_no_chunks PASSED           [ 21%]
+tests/test_chunker.py::test_whitespace_only_text_returns_no_chunks XFAIL [ 24%]
+tests/test_chunker.py::test_no_chunk_is_fully_contained_in_previous_chunk XFAIL [ 26%]
+tests/test_chunker.py::test_overlap_not_smaller_than_chunk_size_is_rejected XFAIL [ 29%]
+tests/test_chunker.py::test_chunks_do_not_cross_page_boundaries PASSED   [ 31%]
+tests/test_chunker.py::test_overlap_is_not_carried_across_page_boundary PASSED [ 34%]
+tests/test_chunker.py::test_empty_page_produces_no_chunks_and_keeps_numbering PASSED [ 36%]
+tests/test_deduplication.py::test_same_evidence_from_reindexed_pdf_is_removed PASSED [ 39%]
+tests/test_deduplication.py::test_different_chunks_on_same_page_are_kept PASSED [ 41%]
+tests/test_deduplication.py::test_results_from_different_documents_are_kept PASSED [ 43%]
+tests/test_deduplication.py::test_same_filename_with_different_document_id_is_merged_by_design PASSED [ 46%]
+tests/test_deduplication.py::test_duplicates_with_different_scores_keep_highest_when_sorted PASSED [ 48%]
+tests/test_deduplication.py::test_duplicates_keep_first_occurrence_not_max_score PASSED [ 51%]
+tests/test_deduplication.py::test_empty_results PASSED                   [ 53%]
+tests/test_deduplication.py::test_search_endpoint_returns_unique_results_for_single_copy PASSED [ 56%]
+tests/test_deduplication.py::test_search_endpoint_returns_limit_unique_results_when_pdf_indexed_twice XFAIL [ 58%]
+tests/test_eval_metrics.py::test_normalize_removes_line_breaks_and_spaces PASSED [ 60%]
+tests/test_eval_metrics.py::test_parse_page_group PASSED                 [ 63%]
+tests/test_eval_metrics.py::test_single_evidence_hit_and_rank PASSED     [ 65%]
+tests/test_eval_metrics.py::test_single_evidence_miss PASSED             [ 68%]
+tests/test_eval_metrics.py::test_alternative_pages_count_as_one_evidence PASSED [ 70%]
+tests/test_eval_metrics.py::test_multi_evidence_requires_all_groups PASSED [ 73%]
+tests/test_eval_metrics.py::test_other_document_with_same_page_is_not_a_hit PASSED [ 75%]
+tests/test_eval_metrics.py::test_unanswerable_question_is_excluded PASSED [ 78%]
+tests/test_eval_metrics.py::test_percentile_matches_linear_interpolation PASSED [ 80%]
+tests/test_eval_pipeline.py::test_pipeline_indexes_once_and_writes_results PASSED [ 82%]
+tests/test_eval_pipeline.py::test_pipeline_refuses_to_index_into_protected_collection PASSED [ 85%]
+tests/test_metadata.py::test_page_number_starts_at_one_and_is_sequential PASSED [ 87%]
+tests/test_metadata.py::test_missing_pdf_raises_file_not_found PASSED    [ 90%]
+tests/test_metadata.py::test_chunk_metadata_fields_and_ids PASSED        [ 92%]
+tests/test_metadata.py::test_every_law_chunk_text_comes_from_its_page PASSED [ 95%]
+tests/test_metadata.py::test_page_metadata_survives_qdrant_round_trip PASSED [ 97%]
+tests/test_metadata.py::test_upsert_rejects_mismatched_chunks_and_embeddings PASSED [100%]
+
+=========================== short test summary info ===========================
+XFAIL tests/test_chunker.py::test_whitespace_only_text_returns_no_chunks - 발견된 문제: 공백만 있는 입력은 strip() 이후 길이 0이 되지만 빈 문자열 청크 ['']를 반환한다.
+XFAIL tests/test_chunker.py::test_no_chunk_is_fully_contained_in_previous_chunk - 발견된 문제: 남은 텍스트가 overlap(120자) 이하이면 이전 청크에 완전히 포함된 중복 청크가 추가로 생성된다. 예: 1480자 -> 세 번째 청크 text[1360:1480]은 두 번째 청크 text[680:1480]의 일부.
+XFAIL tests/test_chunker.py::test_overlap_not_smaller_than_chunk_size_is_rejected - 발견된 문제: overlap >= chunk_size이면 start가 증가하지 않아 무한 루프에 빠진다. 입력 검증이 없다.
+XFAIL tests/test_deduplication.py::test_search_endpoint_returns_limit_unique_results_when_pdf_indexed_twice - 발견된 문제: /documents/search는 Qdrant에서 limit개만 가져온 뒤 중복을 제거한다. 같은 PDF가 여러 번 인덱싱되어 있으면 서로 다른 근거가 있어도 limit보다 적은 결과가 반환된다.
+======================== 37 passed, 4 xfailed in 1.50s ========================

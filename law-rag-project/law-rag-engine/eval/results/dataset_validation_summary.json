@@ -1,0 +1,18 @@
+{
+  "pdf_pages": 26,
+  "total_chunks": 88,
+  "api_default_max_chunks": 20,
+  "last_page_indexed_with_default": 6,
+  "questions": 20,
+  "answerable_questions": 16,
+  "evidence_items": 20,
+  "verified_evidence_items": 20,
+  "pending_verification": [],
+  "evidence_split_across_chunks": [],
+  "answerable_questions_fully_indexed_with_default_max_chunks": [
+    "D02",
+    "D04",
+    "M03",
+    "S06"
+  ]
+}

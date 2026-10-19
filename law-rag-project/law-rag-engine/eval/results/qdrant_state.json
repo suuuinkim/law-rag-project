@@ -1,0 +1,35 @@
+{
+  "collection_name": "law_documents",
+  "exists": true,
+  "points_count": 10,
+  "document_count": 2,
+  "filenames": [
+    {
+      "original_filename": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "document_id_count": 2,
+      "total_points": 10,
+      "points_per_document": [
+        5
+      ],
+      "max_page_per_document": [
+        2
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "614b64a5-9b5b-46ed-afbc-931b9fe1e2e3",
+      "original_filename": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "points": 5,
+      "unique_chunk_ids": 5,
+      "max_page": 2
+    },
+    {
+      "document_id": "cf9a1a44-f6ae-4ac9-8417-b210dcb7fada",
+      "original_filename": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "points": 5,
+      "unique_chunk_ids": 5,
+      "max_page": 2
+    }
+  ]
+}
