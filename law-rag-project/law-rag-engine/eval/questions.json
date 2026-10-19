@@ -1,0 +1,221 @@
+{
+  "dataset_version": "1.0",
+  "source_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+  "source_note": "법제처 국가법령정보센터 PDF, 26페이지. 동일 조문의 현행/시행예정 버전이 함께 수록되어 있어 일부 근거는 여러 페이지에 존재한다.",
+  "page_rule": "expected_pages는 PyMuPDF 기준 1부터 시작하는 페이지 번호(pdf_loader.extract_pages_from_pdf와 동일). expected_evidence[i]는 expected_pages[i] 페이지 원문에 있어야 하며, 공백·줄바꿈은 무시하고 비교한다. 한 근거가 여러 페이지에 있으면 '14|15'처럼 표기하고 그중 하나만 검색되어도 해당 근거를 찾은 것으로 본다.",
+  "hit_rule": "answerable 질문만 Hit Rate@5에 포함한다. 근거가 1개인 질문은 그 페이지가 상위 5개에 있으면 Hit. 근거가 여러 개인 multi_evidence 질문은 모든 근거 페이지가 상위 5개에 있어야 Hit(strict)이며, 일부만 있는 경우는 evidence_recall로 따로 기록한다.",
+  "questions": [
+    {
+      "question_id": "D01",
+      "question": "근로기준법상 1주 간의 근로시간은 몇 시간을 초과할 수 없나요?",
+      "category": "direct",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["11"],
+      "expected_evidence": ["1주 간의 근로시간은 휴게시간을 제외하고 40시간을 초과할 수 없다"],
+      "article": "제50조제1항",
+      "answerable": true
+    },
+    {
+      "question_id": "D02",
+      "question": "해고의 예고는 해고 며칠 전까지 해야 하나요?",
+      "category": "direct",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["4"],
+      "expected_evidence": ["적어도 30일 전에 예고를 하여야 하고, 30일 전에 예고를 하지 아니하였을 때에는 30일분 이상의 통상임금을 지급하여야 한다"],
+      "article": "제26조",
+      "answerable": true
+    },
+    {
+      "question_id": "D03",
+      "question": "근로시간이 8시간인 경우 휴게시간은 얼마나 주어야 하나요?",
+      "category": "direct",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["13"],
+      "expected_evidence": ["근로시간이 4시간인 경우에는 30분 이상, 8시간인 경우에는 1시간 이상의 휴게시간을 근로시간 도중에 주어야 한다"],
+      "article": "제54조제1항",
+      "answerable": true
+    },
+    {
+      "question_id": "D04",
+      "question": "근로자가 퇴직하면 사용자는 임금과 금품을 언제까지 청산해야 하나요?",
+      "category": "direct",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["5"],
+      "expected_evidence": ["사망 또는 퇴직한 경우에는 그 지급 사유가 발생한 때부터 14일 이내에 임금, 보상금, 그 밖의 모든 금품을 지급하여야 한다"],
+      "article": "제36조",
+      "answerable": true
+    },
+    {
+      "question_id": "D05",
+      "question": "생리휴가는 한 달에 며칠 주어야 하나요?",
+      "category": "direct",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["17"],
+      "expected_evidence": ["여성 근로자가 청구하면 월 1일의 생리휴가를 주어야 한다"],
+      "article": "제73조",
+      "answerable": true
+    },
+    {
+      "question_id": "D06",
+      "question": "임금채권의 소멸시효는 몇 년인가요?",
+      "category": "direct",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["11"],
+      "expected_evidence": ["임금채권은 3년간 행사하지 아니하면 시효로 소멸한다"],
+      "article": "제49조",
+      "answerable": true
+    },
+    {
+      "question_id": "S01",
+      "question": "회사 사정으로 일을 못 하고 쉬게 되면 그 기간에 돈을 받을 수 있나요?",
+      "category": "semantic",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["11"],
+      "expected_evidence": ["사용자의 귀책사유로 휴업하는 경우에 사용자는 휴업기간 동안 그 근로자에게 평균임금의 100분의 70 이상의 수당을 지급하여야 한다"],
+      "article": "제46조제1항",
+      "answerable": true
+    },
+    {
+      "question_id": "S02",
+      "question": "밤 11시부터 새벽까지 일하면 돈을 더 받을 수 있나요?",
+      "category": "semantic",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["13"],
+      "expected_evidence": ["야간근로(오후 10시부터 다음 날 오전 6시 사이의 근로를 말한다)에 대하여는 통상임금의 100분의 50 이상을 가산하여"],
+      "article": "제56조제3항",
+      "answerable": true
+    },
+    {
+      "question_id": "S03",
+      "question": "팀장이 직급을 앞세워 업무와 상관없는 일로 계속 괴롭히는데 법으로 금지되어 있나요?",
+      "category": "semantic",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["18"],
+      "expected_evidence": ["직장에서의 지위 또는 관계 등의 우위를 이용하여 업무상 적정범위를 넘어 다른 근로자에게 신체적ㆍ정신적 고통을 주거나 근무환경을 악화시키는 행위"],
+      "article": "제76조의2",
+      "answerable": true
+    },
+    {
+      "question_id": "S04",
+      "question": "입사한 지 1년이 안 된 신입사원도 연차를 받을 수 있나요?",
+      "category": "semantic",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["14|15"],
+      "expected_evidence": ["계속하여 근로한 기간이 1년 미만인 근로자 또는 1년간 80퍼센트 미만 출근한 근로자에게 1개월 개근 시 1일의 유급휴가를 주어야 한다"],
+      "article": "제60조제2항 (현행 p.14 / 2026.8.20. 시행본 p.15)",
+      "answerable": true
+    },
+    {
+      "question_id": "S05",
+      "question": "돌이 안 된 아기에게 근무 중 젖을 먹일 시간을 따로 받을 수 있나요?",
+      "category": "semantic",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["18"],
+      "expected_evidence": ["생후 1년 미만의 유아(乳兒)를 가진 여성 근로자가 청구하면 1일 2회 각각 30분 이상의 유급 수유 시간을 주어야 한다"],
+      "article": "제75조",
+      "answerable": true
+    },
+    {
+      "question_id": "S06",
+      "question": "부당하게 잘렸다고 생각되면 어디에 언제까지 이의를 제기해야 하나요?",
+      "category": "semantic",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["4"],
+      "expected_evidence": ["구제신청은 부당해고등이 있었던 날부터 3개월 이내에 하여야 한다"],
+      "article": "제28조",
+      "answerable": true
+    },
+    {
+      "question_id": "M01",
+      "question": "연장근로는 1주에 최대 몇 시간까지 가능하고, 연장근로를 하면 임금을 얼마나 더 받나요?",
+      "category": "multi_evidence",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["12", "13"],
+      "expected_evidence": [
+        "당사자 간에 합의하면 1주 간에 12시간을 한도로 제50조의 근로시간을 연장할 수 있다",
+        "연장근로(제53조ㆍ제59조 및 제69조 단서에 따라 연장된 시간의 근로를 말한다)에 대하여는 통상임금의 100분의 50 이상을 가산하여"
+      ],
+      "article": "제53조제1항 + 제56조제1항",
+      "answerable": true
+    },
+    {
+      "question_id": "M02",
+      "question": "17세 청소년을 아르바이트로 채용할 때 사업장에 갖춰 둘 서류와 근로시간 제한은 무엇인가요?",
+      "category": "multi_evidence",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["16", "17"],
+      "expected_evidence": [
+        "18세 미만인 사람에 대하여는 그 연령을 증명하는 가족관계기록사항에 관한 증명서와 친권자 또는 후견인의 동의서를 사업장에 갖추어 두어야 한다",
+        "15세 이상 18세 미만인 사람의 근로시간은 1일에 7시간, 1주에 35시간을 초과하지 못한다"
+      ],
+      "article": "제66조 + 제69조",
+      "answerable": true
+    },
+    {
+      "question_id": "M03",
+      "question": "회사가 경영이 어려워 정리해고를 하려면 어떤 요건을 갖추고, 근로자에게 언제 어떻게 알려야 하나요?",
+      "category": "multi_evidence",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["3", "4"],
+      "expected_evidence": [
+        "경영상 이유에 의하여 근로자를 해고하려면 긴박한 경영상의 필요가 있어야 한다",
+        "해고사유와 해고시기를 서면으로 통지하여야 한다"
+      ],
+      "article": "제24조제1항 + 제27조제1항 (참고: 제26조 해고 예고 p.4)",
+      "answerable": true
+    },
+    {
+      "question_id": "M04",
+      "question": "업무 중 다쳐서 요양 중인 근로자는 휴업보상을 얼마나 받고, 그 기간에 해고될 수 있나요?",
+      "category": "multi_evidence",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": ["19", "3"],
+      "expected_evidence": [
+        "요양 중에 있는 근로자에게 그 근로자의 요양 중 평균임금의 100분의 60의 휴업보상을 하여야 한다",
+        "업무상 부상 또는 질병의 요양을 위하여 휴업한 기간과 그 후 30일 동안"
+      ],
+      "article": "제79조제1항 + 제23조제2항",
+      "answerable": true
+    },
+    {
+      "question_id": "U01",
+      "question": "2026년 최저임금 시급은 얼마인가요?",
+      "category": "unanswerable",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": [],
+      "expected_evidence": [],
+      "article": "해당 없음 (최저임금은 최저임금법·고용노동부 고시 사항. 본 PDF에는 제93조 취업규칙 기재사항으로 '최저임금에 관한 사항'이라는 표현만 있음)",
+      "answerable": false
+    },
+    {
+      "question_id": "U02",
+      "question": "육아휴직은 최대 몇 년까지 사용할 수 있나요?",
+      "category": "unanswerable",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": [],
+      "expected_evidence": [],
+      "article": "해당 없음 (육아휴직 기간은 남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률 사항. 본 PDF는 제60조제6항 등에서 해당 법률을 인용만 함)",
+      "answerable": false
+    },
+    {
+      "question_id": "U03",
+      "question": "퇴직금은 근속연수에 따라 어떻게 계산하나요?",
+      "category": "unanswerable",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": [],
+      "expected_evidence": [],
+      "article": "해당 없음 (제34조는 '근로자퇴직급여 보장법이 정하는 대로 따른다'고만 규정. 계산식은 본 PDF에 없음)",
+      "answerable": false
+    },
+    {
+      "question_id": "U04",
+      "question": "4대보험 가입 대상이 되는 근로자 기준은 무엇인가요?",
+      "category": "unanswerable",
+      "expected_document": "근로기준법(법률)(제20520호)(20251023).pdf",
+      "expected_pages": [],
+      "expected_evidence": [],
+      "article": "해당 없음 (사회보험 가입 기준은 각 사회보험법 사항)",
+      "answerable": false
+    }
+  ]
+}

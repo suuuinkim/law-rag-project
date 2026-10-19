@@ -5,6 +5,9 @@ law-rag-engine/uploads/
 law-rag-engine/qdrant_storage/
 law-rag-engine/__pycache__/
 law-rag-engine/**/*.pyc
+law-rag-engine/.venv-eval/
+law-rag-engine/.pytest_cache/
+law-rag-engine/eval/cache/
 
 # Frontend
 law-rag-frontend/node_modules/
